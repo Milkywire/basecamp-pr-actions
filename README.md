@@ -22,8 +22,10 @@ If you have a message with all todo in dev review then this should be set with t
 
 ## Example usage
 
-uses: milkywire/basecamp-action
+```yaml
+uses: milkywire/basecamp-pr-actions
 with:
-basecamp-access-token: \${{ secrets.BASECAMP_ACCESS_TOKEN }}
-basecamp-message-team-id: '16945383'
-basecamp-message-id: '2612345915'
+  basecamp-access-token: ${{ secrets.BASECAMP_ACCESS_TOKEN }}
+  basecamp-message-team-id: '16945383'
+  basecamp-message-id: '2612345915'
+```
