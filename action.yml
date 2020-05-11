@@ -1,0 +1,15 @@
+name: 'Basecamp pr actions'
+description: 'Github actions to update Todos in Basecamp 3. When creating a PR this action will move any ToDos linked in the PR description to dev review group. When the PR is merged the ToDos will be marked as done.'
+inputs:
+  basecamp-access-token: # id of input
+    description: 'An access token to your basecamp setup to be able to update ToDos'
+    required: true
+  basecamp-message-team-id: # id of input
+    description: 'If you have a message with all todo in dev review then this should be set to the team id for where the message is located.'
+    required: true
+  basecamp-message-id: # id of input
+    description: 'If you have a message with all todo in dev review then this should be set with the id for the message.'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

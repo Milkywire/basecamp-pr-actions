@@ -1,0 +1,38 @@
+name: Pull request build
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
+      - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Update Basecamp
+        uses: ./
+        with:
+          basecamp-access-token: ${{ secrets.BASECAMP_ACCESS_TOKEN }}
+          basecamp-message-team-id: '16997383'
+          basecamp-message-id: '2646310915'
